@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+
+<title>
+	Procedural, Semi-Procedural and Declarative Programming in SQL
+</title><link rel="stylesheet" type="text/css" href="Celko%20Real%20SQL_files/print.css"></head><body>
+    <form name="form1" method="post" action="print.aspx?article=946" id="form1">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE2NDUzNTU1NDdkGAEFBl9fUGFnZQ8UKwADZGVlZA==" type="hidden">
+</div>
+
+    <div>
+        <div class="articletitle">Procedural, Semi-Procedural and Declarative Programming in SQL</div>
+        <div class="date">15 February 2010</div>
+        <div class="author">by Joe Celko</div>
+
+        <div class="clear"></div>
+
+	    <style type="text/css">#pretty {
+	
+}
+#pretty .codeblue {
+	COLOR: blue
+}
+#pretty .codebrown {
+	COLOR: brown
+}
+#pretty .codedarkred {
+	COLOR: darkred
+}
+#pretty .codegray {
+	COLOR: gray
+}
+#pretty .codegreen {
+	COLOR: green
+}
+#pretty .codemagenta {
+	COLOR: magenta
+}
+#pretty .codered {
+	COLOR: red
+}
+#pretty .indented {
+	MARGIN-LEFT: 80px
+}
+#pretty .listing {
+	BORDER-RIGHT: #cacaca 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #cacaca 1px solid; PADDING-LEFT: 3px; FONT-WEIGHT: normal; FONT-SIZE: 11px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 20px; BORDER-LEFT: #cacaca 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #cacaca 1px solid; FONT-FAMILY: "Courier New", Courier, monospace; BACKGROUND-COLOR: #f9f9f9; TEXT-ALIGN: left
+}
+#pretty .monospaced {
+	
+}
+#pretty .pullout {
+	BORDER-RIGHT: #706573 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #786d7d 1px solid; PADDING-LEFT: 10px; FLOAT: right; PADDING-BOTTOM: 10px; MARGIN-LEFT: 10px; BORDER-LEFT: #766b7b 1px solid; WIDTH: 350px; MARGIN-RIGHT: 0px; PADDING-TOP: 10px; BORDER-BOTTOM: blue 1px solid; BACKGROUND-COLOR: #fbfbfd; TEXT-ALIGN: left
+}
+#pretty .pullout P {
+	MARGIN-LEFT: 0px
+}
+#pretty .tablecontents {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px
+}
+#pretty BLOCKQUOTE {
+	FONT-SIZE: 12px; MARGIN-LEFT: 50px; MARGIN-RIGHT: 50px; FONT-STYLE: italic; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+#pretty BLOCKQUOTE DIV.listing {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 3px; BORDER-TOP: 0px; PADDING-LEFT: 3px; FONT-WEIGHT: normal; FONT-SIZE: 11px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 20px; BORDER-LEFT: 0px; PADDING-TOP: 10px; BORDER-BOTTOM: 0px; FONT-FAMILY: "Courier New", Courier, monospace; BACKGROUND-COLOR: white; TEXT-ALIGN: left
+}
+#pretty DD {
+	MARGIN-TOP: 10px; MARGIN-LEFT: 170px
+}
+#pretty DIV.code {
+	BORDER-RIGHT: silver 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: silver 1px solid; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 0px; BORDER-LEFT: silver 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: silver 1px solid; FONT-FAMILY: "Courier New", Courier, monospace; BACKGROUND-COLOR: whitesmoke; TEXT-ALIGN: left
+}
+#pretty DIV.illustration {
+	MARGIN-BOTTOM: 20px
+}
+#pretty DIV.indent {
+	MARGIN-LEFT: 20px
+}
+#pretty PRE.inline {
+	MARGIN-LEFT: 20px
+}
+#pretty DIV.listing P {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 0px; PADDING-LEFT: 0px; FONT-SIZE: 11px; MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 0px; PADDING-TOP: 0px; FONT-FAMILY: "Courier New", Courier, monospace; TEXT-ALIGN: left
+}
+#pretty DIV.note {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0in; BORDER-TOP: medium none; PADDING-LEFT: 6pt; PADDING-BOTTOM: 0in; MARGIN-LEFT: 28.35pt; BORDER-LEFT: gray 2.25pt solid; MARGIN-RIGHT: 0in; PADDING-TOP: 0in; BORDER-BOTTOM: medium none
+}
+#pretty DIV.note P.note {
+	MARGIN-LEFT: 0in
+}
+#pretty DL {
+	FONT-SIZE: 12px; MARGIN-LEFT: 20px; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+#pretty P {
+	FONT-SIZE: 12px; MARGIN-LEFT: 20px; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+#pretty DT {
+	CLEAR: both; MARGIN-TOP: 10px; FONT-WEIGHT: bold; FLOAT: left; WIDTH: 150px
+}
+#pretty FIELDSET {
+	BORDER-RIGHT: #cacaca 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: #cacaca 1px solid; PADDING-LEFT: 10px; FONT-WEIGHT: normal; FONT-SIZE: 12px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 20px; BORDER-LEFT: #cacaca 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: #cacaca 1px solid; FONT-FAMILY: "Courier New", Courier, monospace; BACKGROUND-COLOR: #f2f2f2; TEXT-ALIGN: left
+}
+#pretty H1 {
+	FONT-SIZE: 145%; MARGIN-LEFT: 0px; FONT-FAMILY: "Times New Roman", Times, serif
+}
+#pretty H2 {
+	FONT-SIZE: 130%; MARGIN-LEFT: 20px; FONT-FAMILY: "Times New Roman", Times, serif
+}
+#pretty H3 {
+	FONT-SIZE: 115%; MARGIN-LEFT: 40px; FONT-FAMILY: "Times New Roman", Times, serif
+}
+#pretty H4 {
+	MARGIN-LEFT: 40px; FONT-FAMILY: "Times New Roman", Times, serif
+}
+#pretty HR {
+	BORDER-TOP: #d2d2d2 1px dotted; BORDER-BOTTOM: thin
+}
+#pretty LEGEND {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 14px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 20px; PADDING-TOP: 10px; FONT-FAMILY: "Times New Roman", Times, serif; TEXT-ALIGN: left
+}
+#pretty LI {
+	MARGIN-TOP: 0px; FONT-SIZE: 12px; MARGIN-BOTTOM: 3px; MARGIN-LEFT: 20px; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-ALIGN: justify
+}
+#pretty P.caption {
+	MARGIN-TOP: 0px; FONT-WEIGHT: bold; FONT-SIZE: 11px; MARGIN-LEFT: 20px; TEXT-ALIGN: left
+}
+#pretty P.illustration {
+	MARGIN-BOTTOM: 0px; MARGIN-LEFT: 0px; TEXT-ALIGN: center
+}
+#pretty P.note {
+	BORDER-RIGHT: silver 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: silver 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 80px; BORDER-LEFT: silver 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: silver 1px solid; TEXT-ALIGN: left
+}
+#pretty P.quote {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: silver 2px solid; FONT-WEIGHT: bold; FONT-SIZE: 17px; FLOAT: right; PADDING-BOTTOM: 15px; MARGIN-LEFT: 10px; LINE-HEIGHT: 15px; MARGIN-RIGHT: 10px; PADDING-TOP: 10px; BORDER-BOTTOM: silver 1px solid; TEXT-ALIGN: left
+}
+#pretty P.start:first-letter {
+	FONT-SIZE: 280%; FLOAT: left; LINE-HEIGHT: 100%
+}
+#pretty PRE {
+	BORDER-RIGHT: silver 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: silver 1px solid; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; MARGIN-LEFT: 0px; BORDER-LEFT: silver 1px solid; PADDING-TOP: 10px; BORDER-BOTTOM: silver 1px solid; BACKGROUND-COLOR: whitesmoke; TEXT-ALIGN: left
+}
+#pretty SPAN.codeblack {
+	COLOR: black
+}
+#pretty SPAN.mono {
+	FONT-WEIGHT: bold; FONT-FAMILY: "Courier New", Courier, monospace
+}
+#pretty TABLE {
+	BORDER-RIGHT: #cacaca 1px solid; BORDER-TOP: #cacaca 1px solid; MARGIN-LEFT: 20px; BORDER-LEFT: #cacaca 1px solid; BORDER-BOTTOM: #cacaca 1px solid
+}
+#pretty TABLE LI {
+	FONT-SIZE: 11px; MARGIN-LEFT: 5px; TEXT-ALIGN: left
+}
+#pretty TABLE OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 15px; PADDING-TOP: 0px
+}
+#pretty TABLE P {
+	FONT-SIZE: 11px; MARGIN: 0px 5px
+}
+#pretty TABLE TD {
+	FONT-SIZE: 11px
+}
+#pretty TABLE UL {
+	MARGIN-LEFT: 10px
+}
+#pretty UL {
+	MARGIN-TOP: 0px
+}
+.CodeInText {
+	FONT-WEIGHT: bold; FONT-FAMILY: courier new, courier, monospaced
+}
+.ImportantWords {
+	FONT-WEIGHT: bold
+}
+.ScreenText {
+	FONT-FAMILY: Century Gothic, Tahoma, Lucida Sans, sans-serif
+}
+PRE {
+	BACKGROUND-COLOR: #d6d6d6
+}
+.CodeInText {
+	FONT-WEIGHT: bold; FONT-FAMILY: courier new, courier, monospaced
+}
+.ImportantWords {
+	FONT-WEIGHT: bold
+}
+.ScreenText {
+	FONT-FAMILY: Century Gothic, Tahoma, Lucida Sans, sans-serif
+}
+PRE {
+	BACKGROUND-COLOR: #d6d6d6
+}
+</style>
+
+<div id="pretty">
+<p class="note">A lot of the time, the key to making SQL databases
+perform well is to take a break from the keyboard and rethink the way
+of&nbsp; approaching the problem; and rethinking in terms of a
+set-based declarative approach. Joe takes a simple discussion abut a
+problem with a UDF to illustrate the point that ingrained procedural
+reflexes can often prevent us from seeing simpler set-based techniques.
+</p><p class="start">I have spent many years trying to persuade people
+to use declarative rather than procedural code in SQL. One of my books
+is THINKING IN SETS, with the oversized subtitle "Auxiliary, Temporal,
+and Virtual Tables in SQL" to explain what topics are covered. Most
+programmers discover that it is too big a big leap from a procedural
+mindset to a declarative mindset, and so don't quite make the
+transition all at once. Instead they evolve from a procedural paradigm
+to a variety of semi-procedural programming styles. </p>
+<p>This is just the way that we learn; a step at a time, not a leap of
+insight all at once. The first motion pictures, for example, were shot
+with a fixed position camera aimed at a stage. That is how people had
+seen stage plays for several thousand years. W. D. Griffith was to
+movies as Dr. Codd was to databases. Griffith made the first two-reeler
+in 1910; nobody had thought about more than one reel before that. Then
+in 1911 and 1912 he and his cameraman, Billy Bitzer, started moving the
+camera and lens while filming. He gave us new camera angles such as the
+close-up and soft focus. </p>
+<p>In 2010 February, I came across an example, in a Newsgroup
+discussion, of&nbsp; programmers making the steps, but not the leap.
+The code details aren't relevant to the point I'm making so I am going
+to gloss over them.</p>
+<p>The thread starts with a posting about a User-Defined Function (UDF) that is not working. His opening paragraph was:</p>
+<blockquote>
+	<p>“I have the code below to take a set of INTEGER
+values and return a VARCHAR based on the combination of inputs.
+However, I'm getting an error on line 6, which is the first line where
+the word CASE pops up. Plenty of CASE statements have passed through my
+hands before, so I'm lost of why this one is wrong.” </p>
+</blockquote>
+<p>What followed was a CASE expression with BETWEENs and ORs and CASE
+within CASE constructs. It took pairs of (x, y) and produced an answer
+from a set of three values, call them {'a', 'b', 'c'}. Again, the
+coding details are not my point. The body of the function could just as
+well have been a complicated mathematical expression. </p>
+<p>Two repliers pointed out that CASE is an expression and not a
+statement in SQL. They also pointed out that he was&nbsp; returning a
+VARCHAR(1) instead of a CHAR(1).&nbsp; The CASE function can be
+confusing to anyone who has been initially trained with a procedural
+language which has IF-THEN-ELSE statement constructs. </p>
+<p>His code looked like this skeleton: </p>
+<div class="listing">
+<p>CREATE FUNCTION FnFindFoobar (@x INTEGER, @y INTEGER) <br>RETURNS VARCHAR <br>WITH EXECUTE AS CALLER <br>AS <br>BEGIN <br>&lt;&lt; horrible CASE expression with x and y &gt;&gt;;<br>END; </p></div>
+<p>The clean up and quick fix was:</p>
+<div class="listing">
+<p>CREATE FUNCTION Find_Foobar (@in_x INTEGER, @in_y INTEGER) <br>RETURNS CHAR(1) <br>WITH EXECUTE AS CALLER <br>AS <br>BEGIN <br>RETURN (&lt;&lt; horrible CASE expression with x and y &gt;&gt;);<br>END; </p></div>
+<p>Someone else then asked if he had considered pre-calculating the
+CASE expression results and populating a table with them. This was good
+advice, since the number of (x, y) pairs involved came to a few
+thousand cases. There is no point in dismissing this solution when the
+look-up table is as small as this one. Read-only tables this size tend
+to be in main storage or cache, so they can shared among many sessions,
+and you aren't going to save much on memory by choosing a different
+method.</p>
+<p>But the person who made this suggestion went on to add “You can use
+the table with your UDF or you could use it without the UDF.”, but he
+did not explain what the differences are. They are important. Putting
+the data in the read-only tables this size will tend to keep it in main
+storage or cache, If you are really that tight for primary and/or
+secondary storage that you cannot fit a ~5K row table in your hardware,
+buy some chips and disks. They are so cheap today. Now the data be
+shared among many sessions. The table and its indexes can be used by
+the optimizer. In SQL Server you can include the single column <b>foobar</b> in the index to get a covering index and performance improvement.</p>
+<p>But if you choose to lock the data inside the procedural code of a
+UDF, can it be shared? Do computations get repeated with each
+invocation? What about indexes? Ouch! A UDF pretty-much locks things
+inside. Standard SQL/PSM has a [NOT] DETERMINISTIC option in its
+procedure declarations. This tells the compiler whether the procedure
+or function is always going to return the same answer for the same
+arguments.</p>
+<div class="note">
+<p class="note">&nbsp;<b>note about Standard SQL terms</b>: a parameter
+is the formal place holder in the parameter list of a declaration and
+an argument is the value passed in the invocation of the procedure</p></div>
+<p>&nbsp;A non-deterministic function has to be computed over and over
+again, every time the UDF is called; if the Query Optimiser doesn't
+know for certain whether a a procedure or function is deterministic, it
+has to assume it isn't and go the long route. </p>
+<p>Here is the skeleton of what was posted. </p>
+<div class="listing">
+<p>-- Create table <br>CREATE TABLE Foobar <br>(x INTEGER NOT NULL, <br>y INTEGER NOT NULL, <br>foobar CHAR(1) NOT NULL, <br>PRIMARY KEY CLUSTERED (x, y)); </p>
+<p>-- Populate table with recursive CTEs and proprietary syntax<br>WITH X_CTE <br>AS <br>(SELECT 100 AS x <br>UNION ALL <br>SELECT x + 1 <br>FROM X_CTE <br>WHERE x &lt; 300), </p>
+<p>Y_CTE <br>AS <br>(SELECT 1 AS y <br>UNION ALL <br>SELECT y + 1 <br>FROM Y_CTE<br>WHERE y &lt; 100) </p>
+<p>INSERT INTO Foobar (x, y, foobar) <br>SELECT x, y, &lt;&lt; horrible CASE expression with x and y &gt;&gt; AS foobar <br>FROM X_CTE<br>CROSS JOIN<br>Y_CTE;</p></div>
+<p>This is a nice trick, but it is worth noting that it is highly
+proprietary. No other SQL has ever allowed SELECT without a FROM.
+Standard SQL requires a RECURSIVE keyword, and you cannot use CTEs with
+any statement but a SELECT. It is easy enough to re-write this into
+portable Standard SQL, using a table of integers called Series (I used
+to call it Sequence, but that is now a reserved word in Standard SQL.
+If you have a better name, please tell me). This is the most common SQL
+auxiliary table; experienced SQL programmers create it and then a
+Calendar table at the start of almost new project. </p>
+<div class="listing">
+<p>INSERT INTO FooLookup (x, y, foobar) <br>SELECT X_CTE.x, Y_CTE.y, &lt;&lt; horrible CASE expression &gt;&gt; AS foobar<br>FROM (SELECT seq <br>FROM Series <br>WHERE seq BETWEEN 100 AND 300) AS X_CTE(x)<br>CROSS JOIN<br>(SELECT seq <br>FROM Series<br>WHERE seq BETWEEN 1 AND 100) AS Y_CTE(y);</p></div>
+<p>Recursion, a procedural tool, is expensive. But that is not my
+point. The first thought was to use a procedural tool and not a data
+driven approach to get that CROSS JOIN. See what I mean a mindset? This
+is the semi-procedural guy going back to what he knows. He almost got
+to a declarative mindset. </p>
+<p>Now let's go on with the rest of the skeleton code for the function: </p>
+<div class="listing">
+<p>CREATE FUNCTION Find_Foobar <br>(@in_x INTEGER, @in_y INTEGER) <br>RETURNS CHAR(1) <br>WITH EXECUTE AS CALLER <br>AS <br>BEGIN <br>RETURN <br>COALESCE <br>((SELECT foobar <br>FROM Find_Foobar <br>WHERE x = @in_x <br>AND y = @in_y), 'A'); <br>END; </p></div>
+<p>The reason for COALESCE() is that 'A' is a default value in the
+outer CASE expression, but also a valid result in various THEN and ELSE
+clauses inside inner CASE expressions. The scalar query will return a
+NULL if it cannot find an (x, y, foobar) row in the table. If we know
+that the query covers the entire (x, y) universe, then we did not need
+the COALESCE() and could have avoided a UDF completely. </p>
+<p>Now, let's think about declarative programming. In SQL that means
+constraints in the table declaration in the DDL. This skeleton has none
+except the PRIMARY KEY. Aiee! Here is a problem that you find with
+magazine articles and newsgroup postings; It is so easy to skip over
+the constraints when you provide a skeleton table . You did not need
+them when you declared a file, do you? What one can forget is that the
+three SQL sub-languages (DDL, DML and DCL) work together. In
+particular, the DDL constraints are used by the DML optimizer to
+provide a better execution strategy.. </p>
+<p>The <span class="mono">&lt;&lt; horrible CASE expression &gt;&gt;</span>
+implied expectations for x and y. We were given lower limits (100 and
+1), but the upper limits were open after a small range of (x, y) pairs.
+I think we can assume that the original poster expected the vast
+majority of cases (or all of them) to fall in that small range and
+wanted to handle anything else as an error. In the real world, there is
+usually what Jerry Weinberg called “reasonableness checking” in data.
+The principle is also known as Zipf's Law or the “look for a horse and
+not a zebra” principle in medicine. </p>
+<p>The simple first shot would be to assume we always know the limits and can simply use: </p>
+<div class="listing">
+<p>CREATE TABLE FooLookup <br>(x INTEGER NOT NULL <br>CHECK (x BETWEEN 100 AND 300), <br>y INTEGER NOT NULL <br>CHECK (y BETWEEN 1 AND 100), <br>foobar CHAR(1) <br>DEFAULT 'A'<br>NOT NULL <br>CHECK (foobar) IN ('A', 'B', 'C'), <br>PRIMARY KEY (x, y)); </p></div>
+<p>The DEFAULT 'A' subclause will take care of situation where we did
+not have an explicit value for foobar. This avoids the COALESCE(). But
+what if one of the parameters can be anything? That is easy; drop the
+CHECK() and add a comment. What if one of the parameters is half open
+or has a huge but sparse space? That is, we know a lower (upper) limit,
+but not the matching upper (lower) limit. Just use a simple comparison,
+such as CHECK (y &gt;= 1), instead of a BETWEEN. </p>
+<p>A common situation, which was done with nested CASE expression in
+the original, is that you know a range for a parameter and what the
+results for the other parameter within that range are. That might be
+easier to see with code. Here is a CASE expression for some of the
+possible (x,y) pairs:</p>
+<div class="listing">
+<p>CASE<br>WHEN x BETWEEN 100 AND 200<br>THEN CASE <br>WHEN y IN (2, 4, 6, 8) THEN 'B' <br>WHEN y IN (1, 3, 5, 7, 9) THEN 'C'<br>END<br>WHEN x BETWEEN 201 AND 300<br>THEN CASE <br>WHEN y IN (2, 4, 6, 8, 99) THEN 'C'<br>WHEN y IN (3, 5, 7, 9, 100) THEN 'B'<br>END<br>ELSE 'A'<br>END</p></div>
+<p>This is the DML version of a constraint. It lives only in the
+INSERT. UPDATE, INSERT or SELECT statement where it appears. What we
+really want is constraints in the DDL so that all statements, present
+and future, use it. The trick is to create the table with low and high
+values for each parameter range; a single value is shown with the low
+and high values equal to each other. </p>
+<div class="listing">
+<p>CREATE TABLE FooLookup<br>(low_x INTEGER NOT NULL, <br>high_x INTEGER NOT NULL, <br>CHECK (low_x &lt;= high_x), <br>low_y INTEGER NOT NULL, <br>high_y INTEGER NOT NULL, <br>CHECK (low_y &lt;= high_y), <br>foobar CHAR(1) NOT NULL <br>CHECK (foobar) IN ('A', 'B', 'C'), <br>PRIMARY KEY (x, y)); </p></div>
+<p>CASE expression now becomes this table: </p>
+<div class="listing">
+<p>low_x high_x low_y high_y foobar<br>==================================<br>100 200 2 2 'B' <br>100 200 6 6 'B' <br>100 200 8 8 'B' <br>100 200 1 1 'C'<br>100 200 3 3 'C'<br>100 200 5 5 'C'<br>100 200 7 7 'C'<br>100 200 9 9 'C'<br>201 300 2 2 'C'<br>201 300 4 4 'C'<br>201 300 6 6 'C'<br>201 300 8 8 'C'<br>201 300 99 99 'C'<br>201 300 3 3 'B'<br>201 300 5 5 'B'<br>201 300 7 7 'B'<br>201 300 9 9 'B'<br>201 300 100 100 'B'<br>301 9999 101 9999 'A' <br>-9999 99 -9999 0 'A' </p></div>
+<p>As a safety device, put the default 'A' in ranges outside the rest
+of the table. I used -9999 and 9999 for the least and greatest limits,
+but you get the idea. </p>
+<p>The query has to use BETWEENs on the high and low limits: </p>
+<div class="listing">
+<p>SELECT F.foobar, ..<br>FROM FooLookup AS F, ..<br>WHERE my_x BETWEEN F.low_x AND F.high_x<br>AND my_y BETWEEN F.low_y AND F.high_y <br>AND ..;</p></div>
+<p>Is this always going to be the best way to do something? Who knows? Test it. </p></div>
+
+    </div>
+    </form>
+<br>© Simple-Talk.com
+</body></html>
